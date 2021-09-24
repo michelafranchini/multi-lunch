@@ -14,32 +14,11 @@
         </div>
     </div>
     <div>
-        <form action="/groups" method="POST">
-            @csrf
-            @method('POST')
-            <div class="form-group">
-                <label for="n">Quante persone vuoi che ci siano in un gruppo?</label>
-                <input type="number" class="form-control" id="n" placeholder="Inserisci il numero" value="" name="n">
-            </div>
-            <select class="form-select" aria-label="Default select example" name="day">
-                <label for="day">Quale giorno vorresti uscire a pranzo?</label>
-                <option selected>Scegli il giorno</option>
-                <option name="day" value="lun">Lunedì</option>
-                <option name="day" value="mar">Martedì</option>
-                <option name="day" value="mer">Mercoledì</option>
-                <option name="day" value="gio">Giovedì</option>
-                <option name="day" value="ven">Venerdì</option>
-            </select>
-
-            <div class="form-group">
-                <label for="start">Inizio pausa pranzo</label>
-                <input type="time" id="start" name="start">
-                
-                <label for="end">Fine pausa pranzo</label>
-                <input type="time" id="end" name="end">
-            </div>
-            <button type="submit" class="btn btn-orange">Invia</button>
-        </form>
+        {{-- @dd($config) --}}
+        {{-- <a href="{{route('editconfig')}}" class="btn btn-orange">Modifica qui la configurazione</a>    --}}
+        
+        <a href="{{route('config')}}" class="btn btn-orange">Configurazione</a>
+        
     </div>
 
     

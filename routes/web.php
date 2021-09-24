@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/home', 'HomeController@index');
 
-
-// Route::get('/user', 'User\UserController@index')->name('users.home');
-// Route::get('/user/create', 'User\UserController@create')->name('users.addRestaurant'); 
-// Route::post('/user/createsuccess', 'User\UserController@store')->name('users.addRestaurant.store');
-// Route::get('/admin', 'Admin\AdminController@index')->name('admin.home');
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,8 +23,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin')->middleware('admin');
-//Route::post('/addnumber', 'Admin\AdminController@getNumber');
+
 Route::any('/groups', 'Admin\AdminController@getNumber')->name('groups'); 
+
+Route::get('/config', 'Admin\AdminController@create')->name('config');
+Route::post('/config/success', 'Admin\AdminController@store')->name('config.store');
+
+Route::get('/edit/{id}', 'Admin\AdminController@edit')->name('editconfig');
+Route::patch('/edit/{id}/success', 'Admin\AdminController@update')->name('editconfig.update');
 
 Route::get('/user', 'User\UserController@index')->name('user')->middleware('user');
 Route::get('/user/create', 'User\UserController@create')->name('addRestaurant');
