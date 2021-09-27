@@ -24,12 +24,13 @@
                 <label for="end">Fine pausa pranzo</label>
                 <input type="time" id="end" name="end">
             </div>
-            <button type="submit" class="btn btn-orange" value="Submit">Invia</button>
-            {{-- @dd($newConfig->id) --}}
-            @foreach ($config as $item)
-            <a href="{{route('editconfig', $item['id'])}}" class="btn btn-orange">Modifica qui la configurazione</a>
-                
-            @endforeach
+            @if (count($config) > 0)
+                @foreach ($config as $item)
+                    <a href="{{route('editconfig', $item['id'])}}" class="btn btn-orange">Modifica qui la configurazione</a>
+                @endforeach
+            @else
+                <button type="submit" class="btn btn-orange" value="Submit">Invia</button>
+            @endif
         </form>
     </div>
 

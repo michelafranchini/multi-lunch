@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Restaurant;
 use App\User;
 use App\Config; 
+use App\Mail\SendMail; 
+use Illuminate\Support\Facades\Mail; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,7 +61,7 @@ class AdminController extends Controller
 
         $config->save(); 
 
-        return redirect()->route('groups', $config->id); 
+        return redirect()->route('admin', $config->id); 
 
     }
 
@@ -78,12 +80,11 @@ class AdminController extends Controller
         $request->validate($this->validationArray);  
         $config->update($data); 
 
-        return redirect()->route('groups'); 
+        return redirect()->route('admin'); 
 
     }
 
-    public function getNumber(Request $request) {
-        $data = $request->all();  
+    public function getLunch() {
         
         $users = User::all();
         $configs = Config::all();
@@ -124,15 +125,26 @@ class AdminController extends Controller
                 'fine' => $configEnd, 
                 'giorno' => $configDate
             ]; 
- 
+            
+            foreach($event['partecipanti'] as $partecipante) {
+                $siglePerson = $partecipante['name']; 
+            }
+
             $events[] = $event; 
+
  
         }
         
         //dd($events); 
     
         return view('groups', compact('divisions', 'shuffledRest', 'events')); 
-        
+	
     }
-    
+
+    // public function sendMail(SendMail $sendMail) {
+    //     $sendMail->call(function(){
+    //         getLunch(); 
+    //     })->weeklyOn(1, '8:00');	
+    // }
+            
 }

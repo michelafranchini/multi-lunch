@@ -18,6 +18,7 @@
         {{-- <a href="{{route('editconfig')}}" class="btn btn-orange">Modifica qui la configurazione</a>    --}}
         
         <a href="{{route('config')}}" class="btn btn-orange">Configurazione</a>
+        {{-- <a href="{{route('groups')}}" class="btn btn-orange">Vedi i gruppi</a> --}}
         
     </div>
 

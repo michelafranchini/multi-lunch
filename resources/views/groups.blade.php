@@ -6,18 +6,19 @@
 
         
         @foreach ($events as $event)
-            <div class="" style="border: 1px solid black">
-                <p>RISTORANTE: {{$event['ristorante']}}</p>
+            <div class="card" style="border: 1px solid black">
+                <h5 class="card-title">RISTORANTE: {{$event['ristorante']}}</h5>
                 <p>ORA INIZIO: {{$event['inizio']}}</p>
                 <p>ORA FINE: {{$event['fine']}}</p>
                 <p>IL GIORNO: {{$event['giorno']}}</p>
+                <ul class="list-group list-group-flush">
+                    @foreach ($event['partecipanti'] as $partecipante)
+                    <li class="list-group-item">{{$partecipante['name']}}</li>
+                    @endforeach
+                </ul>
 
-                @foreach ($event['partecipanti'] as $partecipante)
-                    <p>{{$partecipante['name']}}</p>
-                @endforeach
-                
             </div> 
-           @endforeach 
+        @endforeach 
             
 
     </div>
