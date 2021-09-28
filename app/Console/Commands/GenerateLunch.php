@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 use App\Restaurant;
 use App\User;
 use App\Config;
+use App\Mail\SendMail; 
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Mail; 
 
 class GenerateLunch extends Command
 {
@@ -51,16 +54,9 @@ class GenerateLunch extends Command
             $configDate = $config->date; 
         }
 
-        //dd($configStart); 
         $shuffledUser = $users->shuffle()->toArray();
-        
-        //$group = floor(count($shuffledUser)/$data['n']); 
-
-        $utenti = User::inRandomOrder()->limit($configN)->get(); 
-        //$utenti = User::inRandomOrder()->limit($configs['n'])->get();
 
         $divisions = array_chunk($shuffledUser, $configN);
-        //$divisions = array_chunk($shuffledUser, $configs->n); 
 
         $restaurants = Restaurant::all();
         $shuffledRest = $restaurants->shuffle()->toArray();
@@ -73,21 +69,35 @@ class GenerateLunch extends Command
 
         for($i = 0; $i < count($divisions); $i++) {
 
+            $names = []; 
+            $emails = []; 
+            foreach($divisions[$i] as $singleUser) {
+                $names[] = $singleUser['name']; 
+                $emails[] = $singleUser['email'];
+            }
+            //dd($names); 
             $event = [
-                'partecipanti' => $divisions[$i],
+                'partecipanti' => $names,
+                'emails' => $emails, 
                 'ristorante' => $rest[$i]['name'], 
                 'inizio' => $configStart, 
                 'fine' => $configEnd, 
-                'giorno' => $configDate
+                'giorno' => date("d-m-Y", strtotime($configDate))
             ]; 
             
-            foreach($event['partecipanti'] as $partecipante) {
-                $siglePerson = $partecipante['name']; 
-            }
-
+            
             $events[] = $event; 
- 
+
+            Mail::to($event['emails'])->send(new SendMail($event)); 
         }
+
+        // $newRest = new Restaurant(); 
+        // $newRest->name = "Prova"; 
+        // $newRest->address = "Via"; 
+        // $newRest->city = "Roma"; 
+
+        // $newRest->save(); 
+
 
     }
 }

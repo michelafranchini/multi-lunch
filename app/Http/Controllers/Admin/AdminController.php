@@ -96,16 +96,9 @@ class AdminController extends Controller
             $configDate = $config->date; 
         }
 
-        //dd($configStart); 
         $shuffledUser = $users->shuffle()->toArray();
-        
-        //$group = floor(count($shuffledUser)/$data['n']); 
-
-        $utenti = User::inRandomOrder()->limit($configN)->get(); 
-        //$utenti = User::inRandomOrder()->limit($configs['n'])->get();
 
         $divisions = array_chunk($shuffledUser, $configN);
-        //$divisions = array_chunk($shuffledUser, $configs->n); 
 
         $restaurants = Restaurant::all();
         $shuffledRest = $restaurants->shuffle()->toArray();
@@ -118,24 +111,30 @@ class AdminController extends Controller
 
         for($i = 0; $i < count($divisions); $i++) {
 
+            $names = []; 
+            $emails = []; 
+            foreach($divisions[$i] as $singleUser) {
+                $names[] = $singleUser['name']; 
+                $emails[] = $singleUser['email'];
+            }
+            //dd($names); 
             $event = [
-                'partecipanti' => $divisions[$i],
+                'partecipanti' => $names,
+                'emails' => $emails, 
                 'ristorante' => $rest[$i]['name'], 
                 'inizio' => $configStart, 
                 'fine' => $configEnd, 
                 'giorno' => $configDate
             ]; 
             
-            foreach($event['partecipanti'] as $partecipante) {
-                $siglePerson = $partecipante['name']; 
-            }
-
+            
             $events[] = $event; 
 
- 
+            //dd($event['ristorante']); 
+            //dump($event['emails']);
         }
         
-        //dd($events); 
+         
     
         return view('groups', compact('divisions', 'shuffledRest', 'events')); 
 	

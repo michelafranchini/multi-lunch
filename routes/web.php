@@ -25,7 +25,7 @@ Auth::routes();
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin')->middleware('admin');
 
-// Route::any('/groups', 'Admin\AdminController@getLunch')->name('groups'); 
+Route::any('/groups', 'Admin\AdminController@getLunch')->name('groups'); 
 //Route::any('/groups', 'Kernel@schedule')->name('groups'); 
 
 Route::get('/config', 'Admin\AdminController@create')->name('config');

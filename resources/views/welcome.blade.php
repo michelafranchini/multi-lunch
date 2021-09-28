@@ -37,8 +37,8 @@
 
 @section('content')
     <div id="app">
-        <div class="container home_page text-center">
-            <img src="{{asset('img/illustration.svg')}}" alt="" class="illustration">
+        <div class="container-fluid home_page text-center">
+            <img src="{{asset('img/illustration.svg')}}" alt="" class="illustration img-fluid">
             <h1>Vuoi scoprire nuovi ristoranti e conoscere meglio i tuoi colleghi?</h1>
             <h3>MULTILunch è il software che fa per te!</h3>
             <a

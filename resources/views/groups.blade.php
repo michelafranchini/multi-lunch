@@ -11,11 +11,14 @@
                 <p>ORA INIZIO: {{$event['inizio']}}</p>
                 <p>ORA FINE: {{$event['fine']}}</p>
                 <p>IL GIORNO: {{$event['giorno']}}</p>
-                <ul class="list-group list-group-flush">
+                @foreach ($event['partecipanti'] as $nome)
+                    {{$nome}}
+                @endforeach
+                {{-- <ul class="list-group list-group-flush">
                     @foreach ($event['partecipanti'] as $partecipante)
                     <li class="list-group-item">{{$partecipante['name']}}</li>
                     @endforeach
-                </ul>
+                </ul> --}}
 
             </div> 
         @endforeach 
