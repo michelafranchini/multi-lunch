@@ -98,7 +98,6 @@ class GenerateLunch extends Command
             //Mail::to($event['emails'])->send(new SendMail($event)); 
             Mail::send('mail', $event, function($message) use($event)
             { 
-
                 $ics = "invite.ics";
                 $title = "Ecco il tuo invito"; 
                 $users = implode(", " ,$event['partecipanti']); 
@@ -113,10 +112,6 @@ class GenerateLunch extends Command
                 $organizer = "Multi Dialogo";
                 $meetingstamp = strtotime($event['giorno'].'UTC');
                 $dtstart = gmdate('Ymd\THis\Z', $meetingstamp);  //FUNZIONA SOLO CON DATA
-                
-                
-               
-
                 // ICS
                 $mail[0]  = "BEGIN:VCALENDAR";
                 $mail[1] = "PRODID:-//Google Inc//Google Calendar 70.9054//EN";
@@ -128,7 +123,6 @@ class GenerateLunch extends Command
 
                 //$mail[7] = "DTEND;TZID=Europe/Berlin:" . $date. 'T'. $dtend. 'Z';
                 //$mail[9] = "DTSTAMP;TZID=Europe/Berlin:" . $todaystamp;
-                //$mail[8] = "GIORNO" . $date; 
                 $mail[10] = "ORGANIZER;" . $organizer;
                 $mail[14] = "LOCATION:" . $restaurant . " - " . $address. ", " . $city; 
                 $mail[15] = "SEQUENCE:0";
