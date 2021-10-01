@@ -3,16 +3,16 @@
 @section('content')
 <div class="container">
     <h1 class="mb-5">Ciao {{$user->name}}!</h1>
-    <div class="container d-flex">
+    <div class="container d-flex flex-wrap">
         
-        <aside class="">
+        <aside class="container">
             <div class="text_left text-center mt-5 ">
                 <p class="mb-5">Ti piacerebbe provare qualche nuovo ristorante con i tuoi colleghi?</p>
                 <p class="mb-3">O vuoi semplicemente portarli nel tuo ristorante preferito?</p>
                 <a href="{{route('addRestaurant')}}" class="btn btn-orange my-5"> Aggiungi il Ristorante</a>
             </div>
         </aside>
-        <div class="ml-5">
+        <div class="container">
             <h2 class="mb-5">I ristoranti presenti in lista</h2>
             <div class="d-flex justify-content-between width flex-wrap">
             @foreach ($restaurants as $item)

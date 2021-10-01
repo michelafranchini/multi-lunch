@@ -14,7 +14,10 @@
         "guzzlehttp/guzzle": "^7.3",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "2.4"
+        "laravel/ui": "2.4",
+        "phpmailer/phpmailer": "^6.5",
+        "spatie/calendar-links": "^1.6",
+        "spatie/icalendar-generator": "^2.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

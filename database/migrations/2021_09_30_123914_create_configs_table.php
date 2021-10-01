@@ -18,7 +18,7 @@ class CreateConfigsTable extends Migration
             $table->smallInteger('n'); 
             $table->date('date'); 
             $table->time('start'); 
-            $table->time('end'); 
+            $table->time('end');  
             $table->timestamps();
         });
     }

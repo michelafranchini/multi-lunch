@@ -6,8 +6,9 @@
 
         @csrf
         @method('POST')
+        <h2>Aggiunti un ristorante che ti piacerebbe provare</h2>
         
-        <div class="form-group">
+        <div class="form-group mt-5">
             <label for="name">Nome del Ristorante</label>
             <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') }}">
             @error('stagename')

@@ -122,15 +122,15 @@ class AdminController extends Controller
                 'partecipanti' => $names,
                 'emails' => $emails, 
                 'ristorante' => $rest[$i]['name'], 
-                'inizio' => $configStart, 
+                'inizio' => strtotime($configStart), 
                 'fine' => $configEnd, 
-                'giorno' => $configDate
+                'giorno' => date("d-m-Y", strtotime($configDate))
             ]; 
             
             
             $events[] = $event; 
 
-            //dd($event['ristorante']); 
+            //dd($event); 
             //dump($event['emails']);
         }
         
@@ -140,10 +140,6 @@ class AdminController extends Controller
 	
     }
 
-    // public function sendMail(SendMail $sendMail) {
-    //     $sendMail->call(function(){
-    //         getLunch(); 
-    //     })->weeklyOn(1, '8:00');	
-    // }
+    
             
 }
